@@ -1,54 +1,57 @@
-(function(){
-  const burger = document.querySelector('[data-burger]');
-  const header = document.querySelector('.site-header');
-  const mobileMenu = document.querySelector('.mobilemenu');
-  if(!burger || !mobileMenu) return;
+// Hamburger / mobile menu — robust (works on iOS + desktop)
+(() => {
+  let isOpen = false;
 
-  const isOpen = () => mobileMenu.classList.contains('is-open');
+  const getEls = () => ({
+    burger: document.querySelector('[data-burger]'),
+    header: document.querySelector('.site-header'),
+    mobileMenu: document.querySelector('.mobilemenu')
+  });
 
-  const open = () => {
-    mobileMenu.classList.add('is-open');
-    header && header.classList.add('menu-open');
-    burger.setAttribute('aria-expanded', 'true');
+  const setOpen = (val) => {
+    const { burger, header, mobileMenu } = getEls();
+    if (!burger || !mobileMenu) return;
+
+    isOpen = Boolean(val);
+    mobileMenu.classList.toggle('is-open', isOpen);
+    if (header) header.classList.toggle('menu-open', isOpen);
+    document.body.classList.toggle('no-scroll', isOpen);
+    burger.setAttribute('aria-expanded', String(isOpen));
   };
 
-  const close = () => {
-    mobileMenu.classList.remove('is-open');
-    header && header.classList.remove('menu-open');
-    burger.setAttribute('aria-expanded', 'false');
-  };
+  const toggle = () => setOpen(!isOpen);
 
-  const toggle = (ev) => {
-    if (ev) {
-      ev.preventDefault();
-      ev.stopPropagation();
-    }
-    isOpen() ? close() : open();
-  };
-
-  // iOS Safari: aseguramos eventos táctiles
-  burger.addEventListener('click', toggle);
-  burger.addEventListener('touchend', toggle, { passive: false });
-  burger.addEventListener('pointerup', toggle);
-
-  // Cerrar al tocar afuera del menú
+  // Click/tap on burger
   document.addEventListener('click', (e) => {
-    if (!isOpen()) return;
-    const insideMenu = e.target.closest('.mobilemenu');
-    const insideBurger = e.target.closest('[data-burger]');
-    if (!insideMenu && !insideBurger) close();
+    const burgerBtn = e.target.closest('[data-burger]');
+    if (burgerBtn) {
+      e.preventDefault();
+      e.stopPropagation();
+      toggle();
+      return;
+    }
+
+    // Close when clicking outside the menu
+    if (isOpen) {
+      const insideMenu = e.target.closest('.mobilemenu');
+      if (!insideMenu) setOpen(false);
+    }
+  }, true);
+
+  // Close when clicking a link inside the menu
+  document.addEventListener('click', (e) => {
+    if (!isOpen) return;
+    const link = e.target.closest('.mobilemenu a');
+    if (link) setOpen(false);
+  }, true);
+
+  // Close on ESC
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') setOpen(false);
   });
 
-  // Cerrar al elegir una opción
-  mobileMenu.addEventListener('click', (e) => {
-    const link = e.target.closest('a');
-    if (link) close();
-  });
-
-  // Escape
-  document.addEventListener('keydown', (e)=>{
-    if(e.key === 'Escape' && isOpen()) close();
-  });
+  // If the DOM loads with no burger/menu, do nothing.
+  // If they exist later, the delegated listeners above still work.
 })();
 
 (function(){
