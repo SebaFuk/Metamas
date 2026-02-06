@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="260" height="160" viewBox="0 0 260 160">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0F7391"/>
+      <stop offset="1" stop-color="#045473"/>
+    </linearGradient>
+  </defs>
+  <rect x="10" y="10" width="240" height="140" rx="22" fill="rgba(0,0,0,0.22)" stroke="rgba(255,255,255,0.14)" stroke-width="1.2"/>
+  <circle cx="62" cy="80" r="34" fill="url(#g)" opacity="0.9"/>
+  <path d="M50 82 l10 10 22-28" fill="none" stroke="white" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="118" y="70" font-family="Poppins, Arial, sans-serif" font-size="24" font-weight="800" fill="#EFF2EE">ISO</text>
+  <text x="118" y="98" font-family="Poppins, Arial, sans-serif" font-size="20" font-weight="700" fill="#EFF2EE">9001:2015</text>
+  <text x="118" y="122" font-family="Poppins, Arial, sans-serif" font-size="12" font-weight="600" fill="rgba(239,242,238,0.78)">Sistema de Gestión</text>
+</svg>
