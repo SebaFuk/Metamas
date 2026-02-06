@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Productos | Metamas</title>
+<meta content="Productos y trabajos Metamas: piezas industriales, estructuras y desarrollos especiales." name="description"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="css/styles.css" rel="stylesheet">
+</link></head>
+<body>
+<header class="topbar">
+<div class="container">
+<div class="nav" data-nav="">
+<a aria-label="Metamas" class="brand" href="index.html">
+<img alt="Metamas" src="assets/img/logo_light.png"/>
+<div>
+<span>metamas</span>
+<small>soluciones metalúrgicas</small>
+</div>
+</a>
+<nav aria-label="Navegación" class="navlinks">
+<a href="empresa.html">Empresa</a>
+<a href="servicios.html">Servicios</a>
+<a href="productos.html">Productos</a>
+<a href="contacto.html">Contacto</a>
+</nav>
+<div class="nav-cta">
+<a class="btn ghost" href="contacto.html">Pedir cotización</a>
+<a class="btn primary" href="https://wa.me/5493413667500" rel="noopener" target="_blank">WhatsApp</a>
+<button aria-expanded="false" aria-label="Abrir menú" class="burger" data-burger="">☰</button>
+</div>
+</div>
+</div>
+<div class="mobilemenu">
+<div class="container">
+<a href="empresa.html">Empresa</a>
+<a href="servicios.html">Servicios</a>
+<a href="productos.html">Productos</a>
+<a href="contacto.html">Contacto</a>
+</div>
+</div>
+</header>
+<main>
+<section class="pagehead">
+<div class="container">
+<div class="breadcrumb">Inicio / Productos</div>
+<h1 class="h1" style="margin-top:10px">Algunos de nuestros productos</h1>
+<p class="lead">Listado basado en la presentación. Cuando quieran, armamos catálogo con fotos reales y fichas técnicas.</p>
+</div>
+</section>
+<section class="section">
+<div class="container">
+<div class="works-grid" id="listado">
+<a class="work-card work-card--clickable" data-product="rolos" href="#producto-rolos" role="button" tabindex="0">
+<div class="work-media">
+<img alt="Rolos para industria alimenticia" src="assets/img/rolos-industria-alimenticia.png"/>
+</div>
+<div class="work-title">Rolos para industria alimenticia</div>
+</a>
+<a class="work-card work-card--clickable" data-product="cuerpo" href="#producto-cuerpo" role="button" tabindex="0">
+<div class="work-media">
+<img alt="Cuerpo rolo deschalador" src="assets/img/cuerpo-rolo-deschalador.png"/>
+</div>
+<div class="work-title">Cuerpo rolo deschalador</div>
+</a>
+<a class="work-card work-card--clickable" data-product="adaptador" href="#producto-adaptador" role="button" tabindex="0">
+<div class="work-media">
+<img alt="Adaptador aspiración" src="assets/img/adaptador-aspiracion.png"/>
+</div>
+<div class="work-title">Adaptador aspiración</div>
+</a>
+<a class="work-card work-card--clickable" data-product="sinfin" href="#producto-sinfin" role="button" tabindex="0">
+<div class="work-media">
+<img alt="Sinfín de descarga con aporte antidesgaste" src="assets/img/sinfin-descarga-antidesgaste.png"/>
+</div>
+<div class="work-title">Sinfín de descarga con aporte antidesgaste</div>
+</a>
+<a class="work-card work-card--clickable" data-product="chasis" href="#producto-chasis" role="button" tabindex="0">
+<div class="work-media">
+<img alt="Chasis para industria agrícola" src="assets/img/chasis-industria-agricola.png"/>
+</div>
+<div class="work-title">Chasis para industria agrícola</div>
+</a>
+<a class="work-card work-card--clickable" data-product="movilvap" href="#producto-movilvap" role="button" tabindex="0">
+<div class="work-media">
+<img alt="MOVILVAP" src="assets/img/movilvap.png"/>
+</div>
+<div class="work-title">MOVILVAP</div>
+</a>
+<a class="work-card work-card--clickable" data-product="tubos" href="#producto-tubos" role="button" tabindex="0">
+<div class="work-media">
+<img alt="Tubos para cárter" src="assets/img/tubos-para-carter.png"/>
+</div>
+<div class="work-title">Tubos para cárter</div>
+</a>
+<a class="work-card work-card--clickable" data-product="automotriz" href="#producto-automotriz" role="button" tabindex="0">
+<div class="work-media">
+<img alt="Piezas para la industria automotriz" src="assets/img/piezas-industria-automotriz.png"/>
+</div>
+<div class="work-title">Piezas para la industria automotriz</div>
+</a>
+<a class="work-card work-card--clickable" data-product="soportes" href="#producto-soportes" role="button" tabindex="0">
+<div class="work-media">
+<img alt="Soportes para cadenas" src="assets/img/soportes-para-cadenas.png"/>
+</div>
+<div class="work-title">Soportes para cadenas</div>
+</a>
+<a class="work-card work-card--clickable" data-product="bases" href="#producto-bases" role="button" tabindex="0">
+<div class="work-media">
+<img alt="Bases metálicas" src="assets/img/bases-metalicas.png"/>
+</div>
+<div class="work-title">Bases metálicas</div>
+</a>
+</div>
+
+<!-- Detalle (fallback sin JS + ancla para compartir) -->
+<div class="product-detail-wrap" aria-live="polite">
+  <div class="product-detail-empty" id="producto-detalle">
+    <strong>Detalle del producto</strong>
+    <span>Hacé click en un producto para ver el proceso y opciones de cotización.</span>
+  </div>
+
+  <article id="producto-rolos" class="product-detail-card">
+    <div class="product-detail-grid">
+      <img class="product-detail-img" src="assets/img/rolos-industria-alimenticia.png" alt="Rolos para industria alimenticia" loading="lazy" />
+      <div>
+        <h3>Rolos para industria alimenticia</h3>
+        <p>Piezas de precisión con terminación controlada para equipos de proceso. Trabajamos con tolerancias, repetibilidad y documentación básica.</p>
+        <h4>Proceso típico</h4>
+        <ul>
+          <li>Relevamiento de medidas y material.</li>
+          <li>Mecanizado CNC + controles por etapa.</li>
+          <li>Terminación / ajuste final y verificación.</li>
+        </ul>
+        <div class="product-detail-actions">
+          <a class="btn primary" href="contacto.html">Contactanos</a>
+          <a class="btn" href="#listado">Volver al listado</a>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <article id="producto-cuerpo" class="product-detail-card">
+    <div class="product-detail-grid">
+      <img class="product-detail-img" src="assets/img/cuerpo-rolo-deschalador.png" alt="Cuerpo rolo deschalador" loading="lazy" />
+      <div>
+        <h3>Cuerpo rolo deschalador</h3>
+        <p>Fabricación de cuerpos/portapiezas y componentes para líneas de proceso. Aseguramos concentricidad, alineación y montaje.</p>
+        <h4>Proceso típico</h4>
+        <ul>
+          <li>Corte y preparación de material.</li>
+          <li>Mecanizado de caras / alojamientos.</li>
+          <li>Control dimensional y prueba de ensamble.</li>
+        </ul>
+        <div class="product-detail-actions">
+          <a class="btn primary" href="contacto.html">Contactanos</a>
+          <a class="btn" href="#listado">Volver al listado</a>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <article id="producto-adaptador" class="product-detail-card">
+    <div class="product-detail-grid">
+      <img class="product-detail-img" src="assets/img/adaptador-aspiracion.png" alt="Adaptador aspiración" loading="lazy" />
+      <div>
+        <h3>Adaptador aspiración</h3>
+        <p>Adaptadores y transiciones para ductos/aspiración con ajuste limpio y terminación prolija.</p>
+        <h4>Proceso típico</h4>
+        <ul>
+          <li>Definición de bocas, espesores y material.</li>
+          <li>Corte / plegado / armado según diseño.</li>
+          <li>Soldadura y terminación.</li>
+        </ul>
+        <div class="product-detail-actions">
+          <a class="btn primary" href="contacto.html">Contactanos</a>
+          <a class="btn" href="#listado">Volver al listado</a>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <article id="producto-sinfin" class="product-detail-card">
+    <div class="product-detail-grid">
+      <img class="product-detail-img" src="assets/img/sinfin-descarga-antidesgaste.png" alt="Sinfín de descarga" loading="lazy" />
+      <div>
+        <h3>Sinfín de descarga con aporte antidesgaste</h3>
+        <p>Sinfines y transportadores con recargue/antidesgaste según aplicación. Balance entre durabilidad y costo.</p>
+        <h4>Proceso típico</h4>
+        <ul>
+          <li>Definición de paso, diámetro, largo y material.</li>
+          <li>Fabricación de hélice y eje.</li>
+          <li>Aporte antidesgaste + verificación.</li>
+        </ul>
+        <div class="product-detail-actions">
+          <a class="btn primary" href="contacto.html">Contactanos</a>
+          <a class="btn" href="#listado">Volver al listado</a>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <article id="producto-chasis" class="product-detail-card">
+    <div class="product-detail-grid">
+      <img class="product-detail-img" src="assets/img/chasis-industria-agricola.png" alt="Chasis" loading="lazy" />
+      <div>
+        <h3>Chasis para industria agrícola</h3>
+        <p>Estructuras y bastidores: armado, escuadrado y soldadura con control de medidas.</p>
+        <h4>Proceso típico</h4>
+        <ul>
+          <li>Corte y preparación de perfiles/chapa.</li>
+          <li>Armado en plantilla y punteo.</li>
+          <li>Soldadura final y control geométrico.</li>
+        </ul>
+        <div class="product-detail-actions">
+          <a class="btn primary" href="contacto.html">Contactanos</a>
+          <a class="btn" href="#listado">Volver al listado</a>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <article id="producto-movilvap" class="product-detail-card">
+    <div class="product-detail-grid">
+      <img class="product-detail-img" src="assets/img/movilvap.png" alt="MOVILVAP" loading="lazy" />
+      <div>
+        <h3>MOVILVAP</h3>
+        <p>Fabricación de componentes y conjuntos para equipos móviles. Enfocado en robustez, armado y terminación.</p>
+        <h4>Proceso típico</h4>
+        <ul>
+          <li>Definición de piezas y lista de materiales.</li>
+          <li>Corte, plegado y soldadura.</li>
+          <li>Armado final / ajuste.</li>
+        </ul>
+        <div class="product-detail-actions">
+          <a class="btn primary" href="contacto.html">Contactanos</a>
+          <a class="btn" href="#listado">Volver al listado</a>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <article id="producto-tubos" class="product-detail-card">
+    <div class="product-detail-grid">
+      <img class="product-detail-img" src="assets/img/tubos-para-carter.png" alt="Tubos para cárter" loading="lazy" />
+      <div>
+        <h3>Tubos para cárter</h3>
+        <p>Corte, conformado y preparación de tubos para aplicaciones industriales/automotrices.</p>
+        <h4>Proceso típico</h4>
+        <ul>
+          <li>Corte a medida y desbarbado.</li>
+          <li>Conformado / mecanizado de extremos.</li>
+          <li>Control y entrega.</li>
+        </ul>
+        <div class="product-detail-actions">
+          <a class="btn primary" href="contacto.html">Contactanos</a>
+          <a class="btn" href="#listado">Volver al listado</a>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <article id="producto-automotriz" class="product-detail-card">
+    <div class="product-detail-grid">
+      <img class="product-detail-img" src="assets/img/piezas-industria-automotriz.png" alt="Piezas para la industria automotriz" loading="lazy" />
+      <div>
+        <h3>Piezas para la industria automotriz</h3>
+        <p>Mecanizados y piezas en serie/corto lote con control dimensional y repetibilidad.</p>
+        <h4>Proceso típico</h4>
+        <ul>
+          <li>Revisión de plano / tolerancias.</li>
+          <li>Set-up y mecanizado CNC.</li>
+          <li>Control final y embalaje.</li>
+        </ul>
+        <div class="product-detail-actions">
+          <a class="btn primary" href="contacto.html">Contactanos</a>
+          <a class="btn" href="#listado">Volver al listado</a>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <article id="producto-soportes" class="product-detail-card">
+    <div class="product-detail-grid">
+      <img class="product-detail-img" src="assets/img/soportes-para-cadenas.png" alt="Soportes para cadenas" loading="lazy" />
+      <div>
+        <h3>Soportes para cadenas</h3>
+        <p>Soportes, ménsulas y piezas para mantenimiento/ensamble industrial.</p>
+        <h4>Proceso típico</h4>
+        <ul>
+          <li>Definición de medidas y material.</li>
+          <li>Corte / mecanizado / perforado.</li>
+          <li>Terminación y control.</li>
+        </ul>
+        <div class="product-detail-actions">
+          <a class="btn primary" href="contacto.html">Contactanos</a>
+          <a class="btn" href="#listado">Volver al listado</a>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <article id="producto-bases" class="product-detail-card">
+    <div class="product-detail-grid">
+      <img class="product-detail-img" src="assets/img/bases-metalicas.png" alt="Bases metálicas" loading="lazy" />
+      <div>
+        <h3>Bases metálicas</h3>
+        <p>Bases y estructuras soldadas para equipos, bancadas y montaje.</p>
+        <h4>Proceso típico</h4>
+        <ul>
+          <li>Corte y preparación.</li>
+          <li>Armado, soldadura y control de escuadra/nivel.</li>
+          <li>Terminación y entrega.</li>
+        </ul>
+        <div class="product-detail-actions">
+          <a class="btn primary" href="contacto.html">Contactanos</a>
+          <a class="btn" href="#listado">Volver al listado</a>
+        </div>
+      </div>
+    </div>
+  </article>
+</div>
+
+<p style="margin-top:14px; opacity:.82">¿Necesitás ficha técnica, medidas o materiales? Pedí cotización y te respondemos rápido.</p>
+<div style="margin-top:12px">
+<a class="btn primary" href="contacto.html">Pedir cotización</a>
+</div>
+</div>
+</section>
+</main>
+<footer class="footer">
+<div class="footer-social">
+<div class="container footer-social-inner">
+<div class="footer-social-title">Redes sociales</div>
+<a aria-label="Instagram" class="social-ig" href="https://www.instagram.com/" rel="noopener" target="_blank">
+<svg aria-hidden="true" fill="none" height="18" viewbox="0 0 24 24" width="18">
+<path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Z" stroke="currentColor" stroke-width="2"></path>
+<path d="M12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10Z" stroke="currentColor" stroke-width="2"></path>
+<path d="M17.5 6.5h.01" stroke="currentColor" stroke-linecap="round" stroke-width="3"></path>
+</svg>
+</a>
+</div>
+</div>
+<div class="footer-main">
+<div class="container footer-cols">
+<div class="footer-brand">
+<div class="brand">
+<img alt="Metamas" src="assets/img/logo_light.png">
+<div>
+<span>metamas</span>
+<small>soluciones metalúrgicas</small>
+</div>
+</img></div>
+<p class="footer-desc">Somos una empresa metalúrgica orientada a resultados: procesos claros, buena terminación y comunicación directa.</p>
+</div>
+<div class="footer-links">
+<div class="footer-h">Secciones</div>
+<ul>
+<li><a href="index.html">Inicio</a></li>
+<li><a href="empresa.html">Empresa</a></li>
+<li><a href="servicios.html">Servicios</a></li>
+<li><a href="productos.html">Productos</a></li>
+<li><a href="contacto.html">Contacto</a></li>
+</ul>
+</div>
+<div class="footer-contact">
+<div class="footer-h">Contacto</div>
+<div class="footer-contact-list">
+<div class="fc-item">
+<span class="fc-ico"><svg aria-hidden="true" class="ico-wa" focusable="false" viewbox="0 0 24 24">
+<path d="M12 3C7.03 3 3 6.58 3 11c0 2.12.93 4.07 2.46 5.55L4.5 21l4.64-1.45c.9.3 1.86.46 2.86.46 4.97 0 9-3.58 9-8s-4.03-9-9-9z" fill="currentColor"></path>
+<path d="M9.17 8.36c.15-.33.32-.34.47-.34h.4c.13 0 .31.05.47.33l.64 1.1c.15.26.13.43-.04.63l-.36.42c-.12.14-.09.26.02.44.29.5.65.96 1.07 1.38.42.41.88.77 1.38 1.06.18.11.3.14.44.02l.42-.36c.2-.17.37-.19.63-.04l1.1.64c.28.16.33.34.33.47v.4c0 .15-.01.32-.34.47-.4.18-1.3.41-2.3.2-1.2-.26-2.75-1.02-4.28-2.55C7.6 12 6.84 10.45 6.58 9.25c-.21-1 .02-1.9.2-2.3z" fill="currentColor"></path>
+</svg></span>
+<a href="https://wa.me/5493413667500" rel="noopener noreferrer" target="_blank">+54 341 366-7500</a>
+</div>
+<div class="fc-item">
+<span class="fc-ico">✉</span>
+<a href="mailto:ventas@metamas.com.ar">ventas@metamas.com.ar</a>
+</div>
+<div class="fc-item">
+<span class="fc-ico">📍</span>
+<span>Ruta Prov. N°14 Km 1,1 — Pérez (Santa Fe)</span>
+</div>
+</div>
+<div class="footer-map-wrap">
+<iframe allowfullscreen="" class="footer-map" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3346.1710769555784!2d-60.75481752255691!3d-32.99926487455126!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95b7adf45ca7492f%3A0x5f8211b497d8ab4f!2sMetal%C3%BArgica%20Massaccesi%20S.R.L.!5e0!3m2!1ses!2sar!4v1770314103313!5m2!1ses!2sar" style="border:0;"></iframe>
+</div>
+</div>
+</div>
+<div class="container footer-bottom">
+<small>© <span id="y"></span> Metamas SRL. Todos los derechos reservados.</small>
+</div>
+</div>
+</footer>
+<script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+<script src="js/main.js"></script>
+<a aria-label="WhatsApp Metamas" class="fab-wa" href="https://wa.me/5493413667500" rel="noopener" target="_blank">
+<svg aria-hidden="true" focusable="false" viewbox="0 0 24 24">
+<path d="M12 3C7.03 3 3 6.58 3 11c0 2.12.93 4.07 2.46 5.55L4.5 21l4.64-1.45c.9.3 1.86.46 2.86.46 4.97 0 9-3.58 9-8s-4.03-9-9-9z" fill="currentColor"></path>
+<path d="M9.17 8.36c.15-.33.32-.34.47-.34h.4c.13 0 .31.05.47.33l.64 1.1c.15.26.13.43-.04.63l-.36.42c-.12.14-.09.26.02.44.29.5.65.96 1.07 1.38.42.41.88.77 1.38 1.06.18.11.3.14.44.02l.42-.36c.2-.17.37-.19.63-.04l1.1.64c.28.16.33.34.33.47v.4c0 .15-.01.32-.34.47-.4.18-1.3.41-2.3.2-1.2-.26-2.75-1.02-4.28-2.55C7.6 12 6.84 10.45 6.58 9.25c-.21-1 .02-1.9.2-2.3z" fill="currentColor"></path>
+</svg>
+<span>WhatsApp</span>
+</a>
+<!-- Product detail modal -->
+<div aria-hidden="true" class="modal" id="productModal">
+<div class="modal__backdrop" data-modal-close=""></div>
+<div aria-labelledby="modalTitle" aria-modal="true" class="modal__dialog" role="dialog">
+<button aria-label="Cerrar" class="modal__close" data-modal-close="" type="button">×</button>
+<div class="modal__content">
+<div class="modal__media">
+<img alt="" id="modalImg" loading="lazy" src=""/>
+</div>
+<div class="modal__body">
+<h3 class="modal__title" id="modalTitle"></h3>
+<p class="modal__desc" id="modalDesc"></p>
+<div class="modal__section">
+<div class="modal__label">Proceso típico</div>
+<ul class="modal__list" id="modalSteps"></ul>
+</div>
+<div class="modal__actions">
+<a class="btn btn-primary" href="contacto.html#contactForm" id="modalContactBtn">Contactanos</a>
+<button class="btn btn-ghost" data-modal-close="" type="button">Cerrar</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
