@@ -1,25 +1,54 @@
 (function(){
   const burger = document.querySelector('[data-burger]');
-  const nav = document.querySelector('[data-nav]');
-  if(!burger || !nav) return;
+  const header = document.querySelector('.site-header');
+  const mobileMenu = document.querySelector('.mobilemenu');
+  if(!burger || !mobileMenu) return;
+
+  const isOpen = () => mobileMenu.classList.contains('is-open');
+
+  const open = () => {
+    mobileMenu.classList.add('is-open');
+    header && header.classList.add('menu-open');
+    burger.setAttribute('aria-expanded', 'true');
+  };
+
+  const close = () => {
+    mobileMenu.classList.remove('is-open');
+    header && header.classList.remove('menu-open');
+    burger.setAttribute('aria-expanded', 'false');
+  };
 
   const toggle = (ev) => {
     if (ev) {
       ev.preventDefault();
       ev.stopPropagation();
     }
-    nav.classList.toggle('mobile-open');
-    burger.setAttribute(
-      'aria-expanded',
-      nav.classList.contains('mobile-open') ? 'true' : 'false'
-    );
+    isOpen() ? close() : open();
   };
 
-  // iOS Safari a veces no dispara el click si hay overlays/flex raros.
-  // Soportamos touchend/pointerup además del click.
+  // iOS Safari: aseguramos eventos táctiles
   burger.addEventListener('click', toggle);
   burger.addEventListener('touchend', toggle, { passive: false });
   burger.addEventListener('pointerup', toggle);
+
+  // Cerrar al tocar afuera del menú
+  document.addEventListener('click', (e) => {
+    if (!isOpen()) return;
+    const insideMenu = e.target.closest('.mobilemenu');
+    const insideBurger = e.target.closest('[data-burger]');
+    if (!insideMenu && !insideBurger) close();
+  });
+
+  // Cerrar al elegir una opción
+  mobileMenu.addEventListener('click', (e) => {
+    const link = e.target.closest('a');
+    if (link) close();
+  });
+
+  // Escape
+  document.addEventListener('keydown', (e)=>{
+    if(e.key === 'Escape' && isOpen()) close();
+  });
 })();
 
 (function(){

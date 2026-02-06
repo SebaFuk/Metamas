@@ -387,7 +387,8 @@ textarea.input{min-height:120px; resize:vertical}
   .footer-grid{grid-template-columns: 1fr}
   .navlinks{display:none}
   .burger{display:inline-flex; align-items:center; justify-content:center}
-  .nav.mobile-open + .mobilemenu{display:block}
+  /* Mobile nav: shown by JS toggling .is-open on .mobilemenu */
+  .mobilemenu.is-open{display:block}
 
   /* Mobile header fixes (iPhone/Android): keep header compact & clickable */
   .brand{gap:10px; min-width:0}
@@ -404,6 +405,7 @@ textarea.input{min-height:120px; resize:vertical}
   background: rgba(27,28,31,.62);
   backdrop-filter: blur(14px);
 }
+.mobilemenu.is-open{display:block}
 .mobilemenu .container{
   display:grid;
   gap:6px;
