@@ -1,12 +1,25 @@
 (function(){
   const burger = document.querySelector('[data-burger]');
   const nav = document.querySelector('[data-nav]');
-  if(burger && nav){
-    burger.addEventListener('click', () => {
-      nav.classList.toggle('mobile-open');
-      burger.setAttribute('aria-expanded', nav.classList.contains('mobile-open') ? 'true' : 'false');
-    });
-  }
+  if(!burger || !nav) return;
+
+  const toggle = (ev) => {
+    if (ev) {
+      ev.preventDefault();
+      ev.stopPropagation();
+    }
+    nav.classList.toggle('mobile-open');
+    burger.setAttribute(
+      'aria-expanded',
+      nav.classList.contains('mobile-open') ? 'true' : 'false'
+    );
+  };
+
+  // iOS Safari a veces no dispara el click si hay overlays/flex raros.
+  // Soportamos touchend/pointerup además del click.
+  burger.addEventListener('click', toggle);
+  burger.addEventListener('touchend', toggle, { passive: false });
+  burger.addEventListener('pointerup', toggle);
 })();
 
 (function(){

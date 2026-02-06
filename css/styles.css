@@ -388,6 +388,14 @@ textarea.input{min-height:120px; resize:vertical}
   .navlinks{display:none}
   .burger{display:inline-flex; align-items:center; justify-content:center}
   .nav.mobile-open + .mobilemenu{display:block}
+
+  /* Mobile header fixes (iPhone/Android): keep header compact & clickable */
+  .brand{gap:10px; min-width:0}
+  .brand img{height:32px; width:auto}
+  .brand div{display:none} /* hide text lockup on small screens */
+  .nav-cta{gap:10px}
+  .nav-cta .btn{padding:10px 12px; font-size:14px}
+  .burger{width:44px; height:44px}
 }
 
 .mobilemenu{
