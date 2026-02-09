@@ -72,6 +72,13 @@ img{max-width:100%; display:block}
   background: transparent;
   box-shadow: none;
 }
+
+/* Remarco/glow blanco SOLO para el ícono del logo */
+.brand img.logo-glow{
+  filter:
+    drop-shadow(0 0 10px rgba(255,255,255,.85))
+    drop-shadow(0 0 20px rgba(255,255,255,.35));
+}
 .brand span{display:block; line-height:1.1}
 .brand small{opacity:.78; font-weight:500}
 
