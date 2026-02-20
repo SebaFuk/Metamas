@@ -16,11 +16,7 @@
 <div class="container">
 <div class="nav" data-nav="">
 <a aria-label="Metamas" class="brand" href="index.html">
-<img alt="Metamas" src="assets/img/logo_mark.png" class="logo-glow"/>
-<div>
-<span>metamas</span>
-<small>soluciones metalúrgicas</small>
-</div>
+<img alt="Metamas" src="assets/img/logo_new.png" class="logo-nuevo"/>
 </a>
 <nav aria-label="Navegación" class="navlinks">
 <a href="empresa.html">Empresa</a>
@@ -29,8 +25,8 @@
 <a href="contacto.html">Contacto</a>
 </nav>
 <div class="nav-cta">
-<a class="btn ghost" href="contacto.html">Pedir cotización</a>
-<a class="btn primary" href="https://wa.me/5493413667500" rel="noopener" target="_blank">WhatsApp</a>
+<a class="btn ghost nav-cta-btn" href="contacto.html">Pedir cotización</a>
+<a class="btn primary nav-cta-btn" href="https://wa.me/5493413667500" rel="noopener" target="_blank">WhatsApp</a>
 <button aria-expanded="false" aria-label="Abrir menú" class="burger" data-burger="">☰</button>
 </div>
 </div>
@@ -349,12 +345,8 @@
 <div class="container footer-cols">
 <div class="footer-brand">
 <div class="brand">
-<img alt="Metamas" src="assets/img/logo_mark.png" class="logo-glow">
-<div>
-<span>metamas</span>
-<small>soluciones metalúrgicas</small>
+<img src="assets/img/logo_new.png" class="logo-nuevo footer-logo" alt="Metamas">
 </div>
-</img></div>
 <p class="footer-desc">Somos una empresa metalúrgica orientada a resultados: procesos claros, buena terminación y comunicación directa.</p>
 </div>
 <div class="footer-links">
@@ -371,10 +363,7 @@
 <div class="footer-h">Contacto</div>
 <div class="footer-contact-list">
 <div class="fc-item">
-<span class="fc-ico"><svg aria-hidden="true" class="ico-wa" focusable="false" viewbox="0 0 24 24">
-<path d="M12 3C7.03 3 3 6.58 3 11c0 2.12.93 4.07 2.46 5.55L4.5 21l4.64-1.45c.9.3 1.86.46 2.86.46 4.97 0 9-3.58 9-8s-4.03-9-9-9z" fill="currentColor"></path>
-<path d="M9.17 8.36c.15-.33.32-.34.47-.34h.4c.13 0 .31.05.47.33l.64 1.1c.15.26.13.43-.04.63l-.36.42c-.12.14-.09.26.02.44.29.5.65.96 1.07 1.38.42.41.88.77 1.38 1.06.18.11.3.14.44.02l.42-.36c.2-.17.37-.19.63-.04l1.1.64c.28.16.33.34.33.47v.4c0 .15-.01.32-.34.47-.4.18-1.3.41-2.3.2-1.2-.26-2.75-1.02-4.28-2.55C7.6 12 6.84 10.45 6.58 9.25c-.21-1 .02-1.9.2-2.3z" fill="currentColor"></path>
-</svg></span>
+<span class="fc-ico"><svg aria-hidden="true" class="ico-wa" focusable="false" viewbox="0 0 24 24"><path d="M12 3C7.03 3 3 6.58 3 11c0 2.12.93 4.07 2.46 5.55L4.5 21l4.64-1.45c.9.3 1.86.46 2.86.46 4.97 0 9-3.58 9-8s-4.03-9-9-9z" fill="currentColor"></path><path d="M9.17 8.36c.15-.33.32-.34.47-.34h.4c.13 0 .31.05.47.33l.64 1.1c.15.26.13.43-.04.63l-.36.42c-.12.14-.09.26.02.44.29.5.65.96 1.07 1.38.42.41.88.77 1.38 1.06.18.11.3.14.44.02l.42-.36c.2-.17.37-.19.63-.04l1.1.64c.28.16.33.34.33.47v.4c0 .15-.01.32-.34.47-.4.18-1.3.41-2.3.2-1.2-.26-2.75-1.02-4.28-2.55C7.6 12 6.84 10.45 6.58 9.25c-.21-1 .02-1.9.2-2.3z" fill="currentColor"></path></svg></span>
 <a href="https://wa.me/5493413667500" rel="noopener noreferrer" target="_blank">+54 341 366-7500</a>
 </div>
 <div class="fc-item">
@@ -391,13 +380,16 @@
 </div>
 </div>
 </div>
+</div>
 <div class="container footer-bottom">
 <small>© <span id="y"></span> Metamas SRL. Todos los derechos reservados.</small>
 </div>
 </div>
 </footer>
 <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+<canvas id="metamas-bg"></canvas>
 <script src="js/main.js"></script>
+<script src="js/bg-productos.js"></script>
 <a aria-label="WhatsApp Metamas" class="fab-wa" href="https://wa.me/5493413667500" rel="noopener" target="_blank">
 <svg aria-hidden="true" focusable="false" viewbox="0 0 24 24">
 <path d="M12 3C7.03 3 3 6.58 3 11c0 2.12.93 4.07 2.46 5.55L4.5 21l4.64-1.45c.9.3 1.86.46 2.86.46 4.97 0 9-3.58 9-8s-4.03-9-9-9z" fill="currentColor"></path>

@@ -17,7 +17,7 @@ html{scroll-behavior:smooth}
 body{
   margin:0;
   font-family: "Poppins", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  background: linear-gradient(180deg, #052f3f 0%, #043b50 40%, #032a38 100%);
+  background: #071c26;
   color: var(--light);
 }
 
@@ -59,15 +59,15 @@ img{max-width:100%; display:block}
 }
 .nav{
   display:flex; align-items:center; justify-content:space-between;
-  padding:14px 0;
+  padding:8px 0;
 }
 .brand{
   display:flex; align-items:center; gap:12px;
   font-weight:800; letter-spacing:.3px;
 }
 .brand img{
-  width:54px; height:34px;
-  border-radius:10px;
+  width:auto; height:auto;
+  border-radius:0;
   object-fit:contain;
   background: transparent;
   box-shadow: none;
@@ -399,7 +399,7 @@ textarea.input{min-height:120px; resize:vertical}
 
   /* Mobile header fixes (iPhone/Android): keep header compact & clickable */
   .brand{gap:10px; min-width:0}
-  .brand img{height:32px; width:auto}
+  .brand img{height:auto; width:auto}
   .brand div{display:none} /* hide text lockup on small screens */
   .nav-cta{gap:10px}
   .nav-cta .btn{padding:10px 12px; font-size:14px}
@@ -652,4 +652,371 @@ textarea.input{min-height:120px; resize:vertical}
 @media (max-width: 900px){
   .product-detail-grid{grid-template-columns: 1fr}
   .product-detail-media{max-width:520px}
+}
+
+
+/* ===== NUEVO LOGO ===== */
+.logo-nuevo {
+  height: 56px;
+  width: auto;
+  max-width: 240px;
+  object-fit: contain;
+  display: block;
+  filter: brightness(1.4) contrast(1.1);
+}
+
+.footer-logo {
+  height: 36px;
+  max-width: 150px;
+  margin-bottom: 8px;
+}
+
+.brand {
+  flex-shrink: 0;
+}
+
+/* MOBILE: logo tamaño correcto, layout igual que antes (logo izquierda, burger derecha) */
+@media (max-width: 980px) {
+  .logo-nuevo {
+    height: 44px;
+    max-width: 180px;
+  }
+  /* Botones de nav ocultos en móvil */
+  .nav-cta-btn {
+    display: none !important;
+  }
+}
+
+
+/* ============================================================
+   ANIMACIONES PROFESIONALES — METAMAS
+   ============================================================ */
+
+/* --- Variables de animación --- */
+:root {
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-soft: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* --- Topbar: scroll shrink --- */
+.topbar {
+  transition: padding 0.35s var(--ease-in-out-soft),
+              background 0.35s ease,
+              box-shadow 0.35s ease;
+}
+.topbar.scrolled {
+  background: rgba(5, 20, 28, 0.90);
+  box-shadow: 0 4px 30px rgba(0,0,0,.35);
+}
+.topbar.scrolled .nav {
+  padding: 8px 0;
+}
+
+/* --- Logo: entrada al cargar --- */
+.brand {
+  animation: logoEntrance 0.9s var(--ease-out-expo) both;
+}
+@keyframes logoEntrance {
+  from { opacity: 0; transform: translateX(-24px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* --- Navlinks: stagger entrance --- */
+.navlinks a {
+  opacity: 0;
+  animation: navFade 0.6s var(--ease-out-expo) forwards;
+}
+.navlinks a:nth-child(1) { animation-delay: 0.15s; }
+.navlinks a:nth-child(2) { animation-delay: 0.22s; }
+.navlinks a:nth-child(3) { animation-delay: 0.29s; }
+.navlinks a:nth-child(4) { animation-delay: 0.36s; }
+@keyframes navFade {
+  from { opacity: 0; transform: translateY(-10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Nav CTA buttons entrada --- */
+.nav-cta-btn {
+  opacity: 0;
+  animation: navFade 0.6s var(--ease-out-expo) forwards;
+}
+.nav-cta-btn:first-child { animation-delay: 0.42s; }
+.nav-cta-btn:last-child  { animation-delay: 0.50s; }
+
+/* --- Botones: spotlight + shimmer hover --- */
+.btn {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle 80px at var(--mx, 50%) var(--my, 50%),
+              rgba(255,255,255,0.13), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.2s;
+  pointer-events: none;
+}
+.btn:hover::before { opacity: 1; }
+
+/* Shimmer sweep on hover */
+.btn::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 60%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent);
+  transform: skewX(-18deg);
+  transition: none;
+  pointer-events: none;
+}
+.btn:hover::after {
+  animation: shimmerBtn 0.55s ease forwards;
+}
+@keyframes shimmerBtn {
+  to { left: 140%; }
+}
+
+/* Ripple on click */
+.btn .ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.28);
+  transform: scale(0);
+  animation: rippleAnim 0.55s linear;
+  pointer-events: none;
+}
+@keyframes rippleAnim {
+  to { transform: scale(4); opacity: 0; }
+}
+
+/* --- Scroll Reveal --- */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.65s var(--ease-out-expo) var(--d, 0ms),
+              transform 0.65s var(--ease-out-expo) var(--d, 0ms);
+  will-change: opacity, transform;
+}
+.reveal.from-left {
+  transform: translateX(-40px);
+}
+.reveal.from-right {
+  transform: translateX(40px);
+}
+.reveal.scale-in {
+  transform: scale(0.92) translateY(20px);
+}
+.reveal.in {
+  opacity: 1;
+  transform: none;
+}
+
+/* --- Hero: entrada dramática --- */
+.hero-left .kicker {
+  opacity: 0;
+  animation: fadeUp 0.7s var(--ease-out-expo) 0.25s both;
+}
+.hero-left .h1 {
+  opacity: 0;
+  animation: fadeUp 0.8s var(--ease-out-expo) 0.38s both;
+}
+.hero-left .lead {
+  opacity: 0;
+  animation: fadeUp 0.7s var(--ease-out-expo) 0.50s both;
+}
+.hero-left .hero-actions {
+  opacity: 0;
+  animation: fadeUp 0.7s var(--ease-out-expo) 0.62s both;
+}
+.hero-left .metrics {
+  opacity: 0;
+  animation: fadeUp 0.7s var(--ease-out-expo) 0.74s both;
+}
+.hero-right {
+  opacity: 0;
+  animation: heroRight 1s var(--ease-out-expo) 0.30s both;
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes heroRight {
+  from { opacity: 0; transform: translateX(40px) scale(0.97); }
+  to   { opacity: 1; transform: translateX(0) scale(1); }
+}
+
+/* --- Cards: tilt 3D hover --- */
+.card, .tile, .work-card {
+  transition: transform 0.3s var(--ease-spring),
+              box-shadow 0.3s ease;
+}
+.work-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 24px 60px rgba(0,0,0,.35);
+}
+.tile:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(0,0,0,.25);
+  border-color: rgba(255,255,255,0.22);
+}
+
+/* Work cards: shimmer on image hover */
+.work-media {
+  overflow: hidden;
+  position: relative;
+}
+.work-media img {
+  transition: transform 0.5s var(--ease-out-expo);
+}
+.work-card:hover .work-media img {
+  transform: scale(1.06);
+}
+.work-media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(6,99,129,0.15), transparent);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.work-card:hover .work-media::after { opacity: 1; }
+
+/* --- Métricas: contador glow --- */
+.metric {
+  transition: transform 0.3s var(--ease-spring),
+              border-color 0.3s ease,
+              background 0.3s ease;
+}
+.metric:hover {
+  transform: translateY(-3px) scale(1.03);
+  border-color: rgba(6, 99, 129, 0.6);
+  background: rgba(6, 99, 129, 0.15);
+}
+
+/* --- Badges: pulse glow --- */
+.badge {
+  position: relative;
+}
+.badge::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: -1;
+  border-radius: 999px;
+}
+.tile:hover .badge::before { opacity: 0.4; }
+
+/* --- Sección headings: underline animado --- */
+.section h2 {
+  position: relative;
+  display: inline-block;
+}
+.section h2::after {
+  content: '';
+  position: absolute;
+  bottom: -6px; left: 0;
+  width: 0; height: 3px;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  border-radius: 2px;
+  transition: width 0.6s var(--ease-out-expo) 0.2s;
+}
+.section h2.in::after,
+.reveal.in .section h2::after { width: 100%; }
+/* Activar también cuando el h2 mismo tiene .reveal.in */
+h2.reveal.in::after { width: 100%; }
+
+/* FAB WhatsApp: float + pulse ring */
+.fab-wa {
+  animation: fabFloat 3s ease-in-out infinite;
+}
+@keyframes fabFloat {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-6px); }
+}
+.fab-wa::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: inherit;
+  border: 2px solid var(--accent);
+  opacity: 0;
+  animation: fabPulse 2.5s ease-out 1s infinite;
+}
+@keyframes fabPulse {
+  0%   { transform: scale(1);   opacity: 0.6; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+
+
+
+/* --- Footer brand: fade in desde abajo --- */
+.footer-brand {
+  opacity: 0;
+  animation: fadeUp 0.8s var(--ease-out-expo) 0.1s both;
+}
+
+/* --- Glowing accent line en la topbar (bottom border animado) --- */
+.topbar::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  height: 1px;
+  width: 0;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  animation: topbarLine 2s var(--ease-out-expo) 0.8s forwards;
+}
+@keyframes topbarLine {
+  to { width: 100%; }
+}
+
+/* --- Prefers reduced motion: desactivar animaciones --- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+  .reveal { opacity: 1; transform: none; }
+}
+
+/* --- Mobile menu: slide + fade animation (no display conflict) --- */
+.mobilemenu {
+  transform-origin: top;
+  transform: scaleY(0.95);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.3s ease;
+  opacity: 0;
+}
+.mobilemenu.is-open {
+  transform: scaleY(1);
+  opacity: 1;
+}
+.mobilemenu a {
+  transition: opacity 0.3s ease, transform 0.3s ease, background 0.2s;
+}
+.mobilemenu.is-open a:nth-child(1) { transition-delay: 0.05s; }
+.mobilemenu.is-open a:nth-child(2) { transition-delay: 0.10s; }
+.mobilemenu.is-open a:nth-child(3) { transition-delay: 0.15s; }
+.mobilemenu.is-open a:nth-child(4) { transition-delay: 0.20s; }
+
+
+
+/* ============================================================
+   FONDO METALÚRGICO — CANVAS PARALLAX
+   ============================================================ */
+#metamas-bg {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+  background: #071c26;
 }
