@@ -8,13 +8,13 @@
   const ctx = canvas.getContext('2d');
 
   const C = {
-    bg:        '#071c26',
-    grid:      'rgba(15,115,145,0.07)',
-    gridAcc:   'rgba(15,115,145,0.18)',
-    gear:      'rgba(15,115,145,0.10)',
-    gearStroke:'rgba(15,115,145,0.22)',
+    bg:        '#f5f6f8',
+    grid:      'rgba(150,162,180,0.14)',
+    gridAcc:   'rgba(120,138,158,0.24)',
+    gear:      'rgba(150,160,175,0.14)',
+    gearStroke:'rgba(120,138,158,0.28)',
     circuit:   'rgba(0,200,255,0.10)',
-    spark:     ['#ff9900','#ffcc44','#ff6600','#ffffff','#ffee88'],
+    spark:     ['#ff6600','#ff9900','#e05500','#cc4400','#ff7700'],
     particle:  'rgba(15,115,145,0.35)',
   };
 
@@ -74,7 +74,7 @@
     /* agujero central */
     ctx.beginPath();
     ctx.arc(0, 0, r * 0.28, 0, Math.PI * 2);
-    ctx.fillStyle = C.bg;
+    ctx.fillStyle = '#f5f6f8';
     ctx.fill();
     ctx.strokeStyle = C.gearStroke;
     ctx.lineWidth = 1.2;
@@ -150,7 +150,7 @@
       const offsetY = -scrollY * 0.12;
       ctx.save();
       ctx.translate(0, offsetY);
-      ctx.strokeStyle = `rgba(0,200,255,${alpha})`;
+      ctx.strokeStyle = `rgba(4,84,115,${alpha*0.7})`;
       ctx.lineWidth = 1;
       ctx.beginPath();
       c.segs.forEach((s, i) => {
@@ -163,7 +163,7 @@
       c.segs.forEach(s => {
         ctx.beginPath();
         ctx.arc(s.x, s.y, 2.5, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(0,200,255,${alpha * 2})`;
+        ctx.fillStyle = `rgba(4,84,115,${alpha*1.4})`;
         ctx.fill();
       });
       ctx.restore();
@@ -204,7 +204,7 @@
       const alpha = p.alpha * (0.6 + 0.4 * Math.sin(p.twinkle));
       ctx.beginPath();
       ctx.arc(p.x, p.y + offsetY, p.r, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(15,180,210,${alpha})`;
+      ctx.fillStyle = `rgba(4,84,115,${alpha*0.6})`;
       ctx.fill();
     });
   }
@@ -301,7 +301,7 @@
 
       ctx.save();
       ctx.globalAlpha = pulse;
-      ctx.strokeStyle = 'rgba(15,200,230,0.6)';
+      ctx.strokeStyle = 'rgba(4,84,115,0.45)';
       ctx.lineWidth = 1;
 
       /* cruz */
@@ -331,7 +331,7 @@
     ctx.clearRect(0, 0, W, H);
 
     /* fondo base */
-    ctx.fillStyle = C.bg;
+    ctx.fillStyle = '#f5f6f8';
     ctx.fillRect(0, 0, W, H);
 
     drawGrid(t);

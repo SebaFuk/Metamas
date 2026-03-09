@@ -17,7 +17,7 @@
     gridAcc: 'rgba(15,115,145,0.18)',
     gear: 'rgba(15,115,145,0.10)',
     gearStroke: 'rgba(15,115,145,0.22)',
-    spark: ['#ff9900','#ffcc44','#ff6600','#ffffff','#ffee88']
+    spark: ['#ff6600','#ff9900','#e05500','#cc4400','#ff7700']
   };
 
   var GEARS = [
@@ -104,7 +104,7 @@
     ctx.fillStyle = C.gear; ctx.strokeStyle = C.gearStroke; ctx.lineWidth = 1.5;
     ctx.fill(); ctx.stroke();
     ctx.beginPath(); ctx.arc(0,0,r*0.28,0,Math.PI*2);
-    ctx.fillStyle = C.bg; ctx.fill(); ctx.strokeStyle = C.gearStroke; ctx.stroke();
+    ctx.fillStyle = '#f5f6f8'; ctx.fill(); ctx.strokeStyle = C.gearStroke; ctx.stroke();
     for (var i2 = 0; i2 < 6; i2++) {
       var a = (i2/6)*Math.PI*2;
       ctx.beginPath(); ctx.moveTo(Math.cos(a)*r*0.30, Math.sin(a)*r*0.30);
@@ -120,7 +120,7 @@
       var alpha = 0.06 + 0.06 * Math.sin(t*c.speed + c.pulse);
       var offsetY = -scrollY * 0.12;
       ctx.save(); ctx.translate(0, offsetY);
-      ctx.strokeStyle = 'rgba(0,200,255,' + alpha + ')'; ctx.lineWidth = 1;
+      ctx.strokeStyle = 'rgba(4,84,115,' + alpha + ')'; ctx.lineWidth = 1;
       ctx.beginPath();
       for (var si = 0; si < c.segs.length; si++) {
         if (si === 0) ctx.moveTo(c.segs[si].x, c.segs[si].y);
@@ -129,7 +129,7 @@
       ctx.stroke();
       for (var si2 = 0; si2 < c.segs.length; si2++) {
         ctx.beginPath(); ctx.arc(c.segs[si2].x, c.segs[si2].y, 2.5, 0, Math.PI*2);
-        ctx.fillStyle = 'rgba(0,200,255,' + (alpha*2) + ')'; ctx.fill();
+        ctx.fillStyle = 'rgba(4,84,115,' + (alpha*2) + ')'; ctx.fill();
       }
       ctx.restore();
     }
@@ -194,7 +194,7 @@
       ctx.save(); ctx.globalAlpha = alpha;
       ctx.beginPath(); ctx.roundRect(cx-58, cy-36, 116, 72, 8);
       ctx.fillStyle = 'rgba(15,115,145,0.12)';
-      ctx.strokeStyle = 'rgba(0,200,255,0.35)'; ctx.lineWidth = 1;
+      ctx.strokeStyle = 'rgba(4,84,115,0.35)'; ctx.lineWidth = 1;
       ctx.fill(); ctx.stroke();
       var X = (110 + Math.sin(t*0.3+c.ph)*50).toFixed(2);
       var Y = (45 + Math.cos(t*0.4+c.ph)*30).toFixed(2);
@@ -217,7 +217,7 @@
       var pulse = 0.3 + 0.2*Math.sin(t*0.8 + re.x*10);
       var size = 18;
       ctx.save(); ctx.globalAlpha = pulse;
-      ctx.strokeStyle = 'rgba(15,200,230,0.6)'; ctx.lineWidth = 1;
+      ctx.strokeStyle = 'rgba(4,84,115,0.45)'; ctx.lineWidth = 1;
       ctx.beginPath(); ctx.moveTo(rx-size,ry); ctx.lineTo(rx+size,ry);
       ctx.moveTo(rx,ry-size); ctx.lineTo(rx,ry+size); ctx.stroke();
       ctx.beginPath(); ctx.arc(rx,ry,size*0.7,0,Math.PI*2); ctx.stroke();
@@ -236,7 +236,7 @@
       if (p.x > W+5) p.x = -5;
       var alpha = p.alpha * (0.6 + 0.4*Math.sin(p.twinkle));
       ctx.beginPath(); ctx.arc(p.x, p.y+offsetY, p.r, 0, Math.PI*2);
-      ctx.fillStyle = 'rgba(15,180,210,' + alpha + ')'; ctx.fill();
+      ctx.fillStyle = 'rgba(4,84,115,' + alpha + ')'; ctx.fill();
     }
   }
 
@@ -270,7 +270,7 @@
   function loop(ts) {
     var t = ts / 1000;
     ctx.clearRect(0,0,W,H);
-    ctx.fillStyle = C.bg; ctx.fillRect(0,0,W,H);
+    ctx.fillStyle = '#f5f6f8'; ctx.fillRect(0,0,W,H);
     drawGrid();
     drawCircuits(t);
     for (var gi = 0; gi < GEARS.length; gi++) drawGear(GEARS[gi], t);

@@ -12,36 +12,44 @@
 </head>
 <body>
 <header class="topbar">
-  <div class="container">
-    <div class="nav" data-nav>
-      <a class="brand" href="index.html" aria-label="Metamas">
+<div class="container">
+<div class="nav" data-nav="">
+<a aria-label="Metamas" class="brand" href="index.html">
 <img alt="Metamas" src="assets/img/logo_new.png" class="logo-nuevo"/>
 <span class="logo-sub">industrias metalúrgicas</span>
 </a>
-
-      <nav class="navlinks" aria-label="Navegación">
-        <a href="empresa.html">Empresa</a>
-        <a href="servicios.html">Servicios</a>
-        <a href="productos.html">Productos</a>
-        <a href="contacto.html">Contacto</a>
-      </nav>
-
-      <div class="nav-cta">
+<nav aria-label="Navegación" class="navlinks">
+<a href="empresa.html">Empresa</a>
+<a href="servicios.html">Servicios</a>
+<a href="productos.html">Productos</a>
+<a href="catalogo.html">Catálogo</a>
+<a href="contacto.html">Contacto</a>
+</nav>
+<div class="nav-cta">
+<a class="cart-nav-btn nav-cta-btn" href="#" data-open-cart aria-label="Ver carrito">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+<span class="cart-badge">0</span>
+</a>
 <a class="btn ghost nav-cta-btn" href="contacto.html">Pedir cotización</a>
 <a class="btn primary nav-cta-btn" href="https://wa.me/5493413667500" rel="noopener" target="_blank">WhatsApp</a>
-<button class="burger" data-burger aria-label="Abrir menú" aria-expanded="false">☰</button>
+<a class="cart-mobile-btn" href="#" data-open-cart aria-label="Ver carrito">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+<span class="cart-badge">0</span>
+</a>
+<button aria-expanded="false" aria-label="Abrir menú" class="burger" data-burger="">☰</button>
 </div>
-    </div>
-  </div>
-
-  <div class="mobilemenu">
-    <div class="container">
-      <a href="empresa.html">Empresa</a>
-      <a href="servicios.html">Servicios</a>
-      <a href="productos.html">Productos</a>
-      <a href="contacto.html">Contacto</a>
-    </div>
-  </div>
+</div>
+</div>
+<div class="mobilemenu">
+<div class="container">
+<a href="empresa.html">Empresa</a>
+<a href="servicios.html">Servicios</a>
+<a href="productos.html">Productos</a>
+<a href="catalogo.html">Catálogo</a>
+<a href="contacto.html">Contacto</a>
+<a href="#" data-open-cart style="color:var(--primary);font-weight:600">🛒 Ver carrito</a>
+</div>
+</div>
 </header>
 <main>
   <section class="pagehead">
@@ -141,6 +149,7 @@
 <li><a href="empresa.html">Empresa</a></li>
 <li><a href="servicios.html">Servicios</a></li>
 <li><a href="productos.html">Productos</a></li>
+<li><a href="catalogo.html">Catálogo</a></li>
 <li><a href="contacto.html">Contacto</a></li>
 </ul>
 </div>
@@ -175,6 +184,7 @@
 <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
 <canvas id="metamas-bg"></canvas>
 <script src="js/main.js"></script>
+<script src="js/carrito.js"></script>
 <script src="js/bg-servicios.js"></script>
 
 <a class="fab-wa" href="https://wa.me/5493413667500" target="_blank" rel="noopener" aria-label="WhatsApp Metamas">
@@ -185,5 +195,22 @@
   <span>WhatsApp</span>
 </a>
 
+<!-- CARRITO LATERAL -->
+<div class="carrito-overlay" id="carrito-overlay"></div>
+<div class="carrito-panel" id="carrito-panel">
+  <div class="carrito-head">
+    <h3>🛒 Carrito de cotización</h3>
+    <button class="carrito-close" id="carrito-close">×</button>
+  </div>
+  <div class="carrito-items" id="carrito-items"></div>
+  <div class="carrito-foot">
+    <div class="carrito-total"><span>Total estimado:</span><strong id="carrito-total-price">$0</strong></div>
+    <button class="btn-cotizar-wa" id="carrito-checkout">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12 3C7.03 3 3 6.58 3 11c0 2.12.93 4.07 2.46 5.55L4.5 21l4.64-1.45c.9.3 1.86.46 2.86.46 4.97 0 9-3.58 9-8s-4.03-9-9-9z"/></svg>
+      Cotizar por WhatsApp
+    </button>
+    <button class="carrito-clear-btn" id="carrito-clear">Vaciar carrito</button>
+  </div>
+</div>
 </body>
 </html>
