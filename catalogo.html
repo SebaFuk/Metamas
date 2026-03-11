@@ -336,19 +336,6 @@ const CATALOG_PRODUCTS_FALLBACK = [
 /* Usar datos del admin si existen, si no usar los hardcodeados */
 let PRODUCTOS_ACTIVOS = CATALOG_PRODUCTS_FALLBACK;
 
-/* Cargar desde Supabase de forma asíncrona */
-(async function(){
-  try {
-    if (window.MetamasDB) {
-      const data = await window.MetamasDB.getData('catalogo');
-      if (data && data.length) {
-        PRODUCTOS_ACTIVOS = data.filter(p => p.visible !== false);
-        renderGrid(document.querySelector('.filter-btn.active')?.dataset?.filter || 'all');
-      }
-    }
-  } catch(e) {}
-})();
-
 /* ============================================================
    RENDER GRID
    ============================================================ */
@@ -491,9 +478,21 @@ function closeDetail(){
 }
 
 /* ============================================================
-   INIT
+   INIT — espera Supabase antes de renderizar
    ============================================================ */
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+
+  // 1. Cargar desde Supabase PRIMERO, antes de cualquier render
+  try {
+    if (window.MetamasDB) {
+      const data = await window.MetamasDB.getData('catalogo');
+      if (data && data.length) {
+        PRODUCTOS_ACTIVOS = data.filter(p => p.visible !== false);
+      }
+    }
+  } catch(e) {}
+
+  // 2. Renderizar con los datos correctos de Supabase
   renderGrid('all');
 
   // Filters
@@ -510,6 +509,18 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('catalog-detail-overlay').addEventListener('click', (e) => {
     if(e.target === document.getElementById('catalog-detail-overlay')) closeDetail();
   });
+
+  // 3. Suscripcion tiempo real: si admin cambia algo, se actualiza sin recargar
+  try {
+    if (window.MetamasDB) {
+      window.MetamasDB.subscribe('catalogo', (newData) => {
+        if (!newData) return;
+        PRODUCTOS_ACTIVOS = newData.filter(p => p.visible !== false);
+        const f = document.querySelector('.filter-btn.active')?.dataset?.filter || 'all';
+        renderGrid(f);
+      });
+    }
+  } catch(e) {}
 });
 </script>
 
