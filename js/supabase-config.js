@@ -36,7 +36,7 @@ window.MetamasDB = (function () {
         .from('site_data')
         .select('value')
         .eq('key', key)
-        .single();
+        .maybeSingle();
       if (error) return null;
       return data.value;
     },
