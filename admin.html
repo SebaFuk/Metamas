@@ -517,6 +517,10 @@
             <div class="settings-info"><h4>Restaurar catálogo por defecto</h4><p>Borra los cambios del catálogo y restaura los ítems originales en la base de datos.</p></div>
             <button class="btn-settings-action danger" id="btn-reset-cat">Restaurar catálogo</button>
           </div>
+          <div class="settings-row">
+            <div class="settings-info"><h4>Restaurar servicios por defecto</h4><p>Restaura los 6 servicios originales (Prensados, Mecanizados, Soldaduras, etc.) tal como estaban.</p></div>
+            <button class="btn-settings-action danger" id="btn-reset-srv">Restaurar servicios</button>
+          </div>
         </div>
       </div>
 
@@ -716,12 +720,14 @@ async function initApp(){
   document.getElementById('btn-add-catalogo').addEventListener('click',()=>openCatModal(null));
   document.getElementById('btn-reset-prod').addEventListener('click',resetProductos);
   document.getElementById('btn-reset-cat').addEventListener('click',resetCatalogo);
+  document.getElementById('btn-reset-srv').addEventListener('click',resetServicios);
   document.getElementById('logout-btn-2').addEventListener('click',doLogout);
   initModal(); initCatModal(); initConfirm(); initSrvModal();
   await Promise.all([loadProductos(),loadCatalogo(),loadServicios()]);
   /* Tiempo real */
   db.subscribe('productos',v=>{if(v){productosData=v;renderProductos(document.getElementById('search-input').value);showToast('Productos actualizados','info')}});
   db.subscribe('catalogo',v=>{if(v){catalogoData=v;renderCatalogo(document.getElementById('cat-search-input').value);showToast('Catálogo actualizado','info')}});
+  db.subscribe('servicios',v=>{if(v&&Array.isArray(v)&&v.length>0){serviciosData=v;renderServicios();showToast('Servicios actualizados','info')}});
   setSyncState('live');
 }
 
@@ -908,9 +914,21 @@ const DEFAULT_SERVICIOS=[
 ];
 
 async function loadServicios(){
-  const raw=await db.getData('servicios');
-  serviciosData=Array.isArray(raw)?raw:DEFAULT_SERVICIOS;
-  renderServicios();
+  // Deshabilitar el botón mientras carga para evitar race conditions
+  const addBtn=document.getElementById('btn-add-servicio');
+  if(addBtn){addBtn.disabled=true;addBtn.style.opacity='0.5';}
+  try{
+    const raw=await db.getData('servicios');
+    // Tratar null, undefined O array vacío como "sin datos" → usar defaults
+    serviciosData=(Array.isArray(raw)&&raw.length>0)?raw:DEFAULT_SERVICIOS;
+    renderServicios();
+  }catch(e){
+    serviciosData=DEFAULT_SERVICIOS;
+    renderServicios();
+    setSyncState('error');
+  }finally{
+    if(addBtn){addBtn.disabled=false;addBtn.style.opacity='';}
+  }
 }
 
 function renderServicios(){
@@ -937,6 +955,13 @@ async function saveServicios(lista){
   setSyncState('syncing');
   try{await db.setData('servicios',lista);serviciosData=lista;setSyncState('live')}
   catch(e){setSyncState('error');throw e}
+}
+
+async function resetServicios(){
+  if(!confirm('¿Restaurar los servicios originales? Se reemplazarán los actuales para todos los visitantes.'))return;
+  await saveServicios(DEFAULT_SERVICIOS);
+  renderServicios();
+  showToast('Servicios restaurados 🌐');
 }
 
 function initSrvModal(){
