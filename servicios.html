@@ -61,53 +61,11 @@
   </section>
 
   <section class="section">
-	    <div class="container">
-	      <div class="grid-3">
-	        <div class="tile">
-	          <span class="badge">Servicio</span>
-	          <h3>Prensados</h3>
-	          <ul class="service-list">
-	            <li>Balancines</li>
-	            <li>Prensas hidráulicas</li>
-	          </ul>
-	        </div>
-	        <div class="tile">
-	          <span class="badge">Servicio</span>
-	          <h3>Mecanizados</h3>
-	          <ul class="service-list">
-	            <li>Tornos CNC</li>
-	            <li>Tornos paralelos con regla digital</li>
-	            <li>Tornería automática</li>
-	            <li>Rectificadora universal</li>
-	          </ul>
-	        </div>
-	        <div class="tile">
-	          <span class="badge">Servicio</span>
-	          <h3>Soldaduras</h3>
-	          <ul class="service-list">
-	            <li>Soldadura MIG</li>
-	            <li>Soldadura TIG</li>
-	            <li>Soldadura con electrodos</li>
-	            <li>Soldadura de punto</li>
-	          </ul>
-	        </div>
-	        <div class="tile">
-	          <span class="badge">Servicio</span>
-	          <h3>Centro de mecanizados</h3>
-	          <ul class="service-list">
-	            <li>Fresado CNC</li>
-	            <li>Perforado y roscado</li>
-	            <li>Series y repetitividad</li>
-	          </ul>
-	        </div>
-	        <div class="tile">
-	          <span class="badge">Servicio</span>
-	          <h3>Plegados</h3>
-	          <ul class="service-list">
-	            <li>Corte y plegado de chapa</li>
-	          </ul>
-	        </div>
-	      </div>
+    <div class="container">
+      <div class="grid-3" id="servicios-grid">
+        <!-- Los servicios se cargan dinámicamente desde la base de datos -->
+        <div style="grid-column:1/-1;text-align:center;padding:40px;opacity:.5">Cargando servicios...</div>
+      </div>
 
       <div class="card" style="padding:18px; margin-top:18px">
         <h2>¿Qué necesitamos para cotizar?</h2>
@@ -183,9 +141,43 @@
 
 <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
 <canvas id="metamas-bg"></canvas>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase-config.js"></script>
 <script src="js/main.js"></script>
 <script src="js/carrito.js"></script>
 <script src="js/bg-servicios.js"></script>
+<script>
+(function(){
+  var DEFAULT_SERVICIOS=[
+    {id:'estampado',nombre:'Estampado',items:['Balancines','Prensas hidráulicas']},
+    {id:'tornos-cnc',nombre:'Tornos CNC',items:['Tornos CNC']},
+    {id:'mecanizados-cnc',nombre:'Mecanizados CNC',items:['Tornos paralelos con regla digital','Tornería automática','Rectificadora universal']},
+    {id:'soldaduras',nombre:'Soldaduras',items:['Soldadura MIG','Soldadura TIG','Soldadura con electrodos','Soldadura de punto']},
+    {id:'centro-mecanizados',nombre:'Centro de mecanizados',items:['Fresado CNC','Perforado y roscado','Series y repetitividad']},
+    {id:'plegados',nombre:'Plegados',items:['Corte y plegado de chapa','Guillotina y plegadora CNC']}
+  ];
+
+  function renderServicios(lista){
+    var grid=document.getElementById('servicios-grid');
+    if(!lista||!lista.length){grid.innerHTML='<div style="grid-column:1/-1;text-align:center;padding:40px;opacity:.5">No hay servicios disponibles.</div>';return}
+    grid.innerHTML=lista.map(function(s){
+      var items=(s.items||[]).map(function(i){return '<li>'+i+'</li>'}).join('');
+      return '<div class="tile"><span class="badge">Servicio</span><h3>'+s.nombre+'</h3><ul class="service-list">'+items+'</ul></div>';
+    }).join('');
+  }
+
+  // Intentar cargar desde Supabase, si falla usar defaults
+  if(window.MetamasDB){
+    window.MetamasDB.getData('servicios').then(function(data){
+      renderServicios(Array.isArray(data)?data:DEFAULT_SERVICIOS);
+    }).catch(function(){
+      renderServicios(DEFAULT_SERVICIOS);
+    });
+  } else {
+    renderServicios(DEFAULT_SERVICIOS);
+  }
+})();
+</script>
 
 <a class="fab-wa" href="https://wa.me/5493413667500" target="_blank" rel="noopener" aria-label="WhatsApp Metamas">
   <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">

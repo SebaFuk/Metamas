@@ -77,30 +77,78 @@
       </div>
 
       <div class="tile">
-        <h2>Formulario</h2>
-        <p style="opacity:.86">Este formulario es HTML (sin backend). Si querés que envíe mails, se conecta a Formspree/Resend o backend propio.</p>
+        <h2>Formulario de contacto</h2>
+        <p style="opacity:.86">Completá el formulario y te respondemos a la brevedad.</p>
 
-        <!-- IMPORTANTE: FormSubmit requiere que el formulario envíe por POST.
-             No abras el link del action en el navegador: completá y enviá el formulario. -->
-        <form class="form" id="contactForm" data-rate-limit="30" action="https://formsubmit.co/n8nfuca@gmail.com" method="POST" autocomplete="on">
-  <!-- FormSubmit config -->
-  <input type="hidden" name="_subject" value="Nueva consulta desde metamas.com.ar"/>
-  <input type="hidden" name="_captcha" value="false"/>
-  <input type="hidden" name="_template" value="table"/>
-  <!-- Cambiá el _next cuando el sitio esté en producción (URL absoluta recomendada).
-       Ej: https://metamas.com.ar/gracias.html -->
-  <input type="hidden" name="_next" value="gracias.html"/>
-  <!-- Honeypot anti-bots (debe quedar vacío) -->
-  <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off"/>
+        <form class="form" id="contactForm" action="https://formsubmit.co/n8nfuca@gmail.com" method="POST" autocomplete="on">
+          <input type="hidden" name="_subject" value="Nueva consulta desde metamas.com.ar"/>
+          <input type="hidden" name="_captcha" value="false"/>
+          <input type="hidden" name="_template" value="table"/>
+          <input type="hidden" name="_next" value="gracias.html"/>
+          <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off"/>
 
-  <input class="input" name="Nombre" required placeholder="Nombre y apellido"/>
-  <input class="input" name="email" type="email" required placeholder="Email"/>
-  <input class="input" name="Empresa" placeholder="Empresa (opcional)"/>
-  <textarea class="input" name="Mensaje" required placeholder="Contanos qué necesitás: material, medidas, cantidad, plazo..."></textarea>
+          <input class="input" name="Nombre" id="cf-nombre" required placeholder="Nombre y apellido"/>
+          <input class="input" name="email" id="cf-email" type="email" required placeholder="Email"/>
+          <input class="input" name="Empresa" id="cf-empresa" placeholder="Empresa (opcional)"/>
+          <textarea class="input" name="Mensaje" id="cf-mensaje" required placeholder="Contanos qué necesitás: material, medidas, cantidad, plazo..." style="min-height:110px"></textarea>
 
-  <button class="btn primary" type="submit" id="contactSubmit">Enviar consulta</button>
-  <small style="opacity:.75">Anti-spam: 1 envío cada 30 segundos.</small>
-</form>
+          <button class="btn primary" type="submit" id="contactSubmit">Enviar consulta</button>
+          <div id="antispam-msg" style="display:none;margin-top:8px;padding:10px 14px;background:rgba(224,85,0,.08);border:1px solid rgba(224,85,0,.3);border-radius:8px;font-size:13px;color:#c04400;font-weight:500;">
+            &#9203; Podés enviar otro mensaje en <span id="antispam-countdown">60</span>s
+          </div>
+          <small style="opacity:.65;margin-top:6px;display:block;">&#128737; Anti-spam activo: 1 envío por minuto.</small>
+        </form>
+
+        <script>
+        (function(){
+          var COOLDOWN = 60;
+          var form = document.getElementById('contactForm');
+          var btn  = document.getElementById('contactSubmit');
+          var msg  = document.getElementById('antispam-msg');
+          var cdEl = document.getElementById('antispam-countdown');
+          var timer = null;
+
+          var lastSent = parseInt(sessionStorage.getItem('mm_last_sent') || '0');
+          var elapsed  = Math.floor((Date.now() - lastSent) / 1000);
+          if (lastSent && elapsed < COOLDOWN) startCooldown(COOLDOWN - elapsed);
+
+          form.addEventListener('submit', function(e) {
+            if (document.querySelector('input[name="_honey"]').value !== '') {
+              e.preventDefault(); return;
+            }
+            var ls = parseInt(sessionStorage.getItem('mm_last_sent') || '0');
+            var el = Math.floor((Date.now() - ls) / 1000);
+            if (ls && el < COOLDOWN) {
+              e.preventDefault();
+              msg.style.display = 'block';
+              cdEl.textContent = COOLDOWN - el;
+              return;
+            }
+            sessionStorage.setItem('mm_last_sent', Date.now().toString());
+            startCooldown(COOLDOWN);
+          });
+
+          function startCooldown(secs) {
+            var rem = secs;
+            btn.disabled = true;
+            btn.textContent = 'Espera ' + rem + 's...';
+            msg.style.display = 'block';
+            cdEl.textContent = rem;
+            clearInterval(timer);
+            timer = setInterval(function() {
+              rem--;
+              btn.textContent = 'Espera ' + rem + 's...';
+              cdEl.textContent = rem;
+              if (rem <= 0) {
+                clearInterval(timer);
+                btn.disabled = false;
+                btn.textContent = 'Enviar consulta';
+                msg.style.display = 'none';
+              }
+            }, 1000);
+          }
+        })();
+        </script>
       </div>
     </div>
   </section>
