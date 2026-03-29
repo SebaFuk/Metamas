@@ -515,25 +515,7 @@ body.no-scroll{
 }
 
 /* ── SKIP LINK (accesibilidad) ── */
-.skip-link{
-  position:absolute;
-  top:-9999px;
-  left:-9999px;
-  padding:8px 18px;
-  border-radius:0 0 10px 10px;
-  background:var(--primary);
-  color:#fff;
-  font-weight:600;
-  font-size:14px;
-  text-decoration:none;
-  transition:top .2s ease;
-  z-index:9999;
-  white-space:nowrap;
-}
-.skip-link:focus{
-  top:0;
-  left:1rem;
-}
+
 
 /* ── ISO BADGE (footer) ── */
 .footer-iso {
