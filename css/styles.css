@@ -517,8 +517,8 @@ body.no-scroll{
 /* ── SKIP LINK (accesibilidad) ── */
 .skip-link{
   position:absolute;
-  top:-100%;
-  left:1rem;
+  top:-9999px;
+  left:-9999px;
   padding:8px 18px;
   border-radius:0 0 10px 10px;
   background:var(--primary);
@@ -532,6 +532,7 @@ body.no-scroll{
 }
 .skip-link:focus{
   top:0;
+  left:1rem;
 }
 
 /* ── ISO BADGE (footer) ── */
