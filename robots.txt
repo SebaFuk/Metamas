@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /admin.html
+Disallow: /panel-administracion.html
+Disallow: /gracias.html
+
+Sitemap: https://metamas.com.ar/sitemap.xml

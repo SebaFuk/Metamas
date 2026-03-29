@@ -87,7 +87,7 @@
     const last = parseInt(localStorage.getItem(key) || '0', 10);
     const left = (last + seconds*1000) - Date.now();
     if(left > 0) setButtonCountdown(left);
-  }catch(e){}
+  }catch(e){ console.warn('[Metamas] rate-limit read:', e.message); }
 
   form.addEventListener('submit', (e) => {
     try{
@@ -108,64 +108,10 @@
         btn.disabled = true;
         btn.textContent = 'Enviando...';
       }
-    }catch(err){}
+    }catch(err){ console.warn('[Metamas] rate-limit write:', err.message); }
   });
 })();
 
-
-
-/* ===== Animaciones y micro-interacciones ===== */
-(function(){
-  // Botones: efecto "spotlight" siguiendo el mouse
-  const btns = document.querySelectorAll('.btn');
-  btns.forEach(b=>{
-    b.addEventListener('pointermove', (e)=>{
-      const r = b.getBoundingClientRect();
-      const mx = ((e.clientX - r.left) / r.width) * 100;
-      const my = ((e.clientY - r.top) / r.height) * 100;
-      b.style.setProperty('--mx', mx + '%');
-      b.style.setProperty('--my', my + '%');
-    });
-  });
-
-  // Scroll reveal con IntersectionObserver
-  const targets = document.querySelectorAll([
-    '.hero-left',
-    '.hero-right',
-    '.metrics .metric',
-    '.section .h2',
-    '.section .lead',
-    '.card',
-    '.tile',
-    '.work-card',
-    '.footer-main > *',
-    '.footer-social-inner > *'
-  ].join(','));
-
-  // Marcar como "reveal" y setear delays (stagger por fila)
-  targets.forEach((el, i)=>{
-    if(!el.classList.contains('reveal')) el.classList.add('reveal');
-    // stagger suave: 0-180ms
-    const d = (i % 6) * 30;
-    el.style.setProperty('--d', d + 'ms');
-  });
-
-  if(!('IntersectionObserver' in window)){
-    document.querySelectorAll('.reveal').forEach(el=>el.classList.add('in'));
-    return;
-  }
-
-  const io = new IntersectionObserver((entries)=>{
-    entries.forEach(entry=>{
-      if(entry.isIntersecting){
-        entry.target.classList.add('in');
-        io.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.14, rootMargin: '0px 0px -10% 0px' });
-
-  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-})();
 
 
 // --- Productos: modal de detalle ---
@@ -181,7 +127,7 @@
   const PRODUCTS = {
     rolos: {
       title: 'Rolos para industria alimenticia',
-      img: 'assets/img/rolos-para-industria-alimenticia.png',
+      img: 'assets/img/rolos-industria-alimenticia.png',
       desc: 'Fabricación de rolos con buen acabado superficial y tolerancias controladas. Se entregan listos para montaje.',
       steps: [
         'Relevamiento de medidas, material y aplicación.',
@@ -214,7 +160,7 @@
     },
     sinfin: {
       title: 'Sinfín de descarga con aporte antidesgaste',
-      img: 'assets/img/sinfin-de-descarga.png',
+      img: 'assets/img/sinfin-descarga-antidesgaste.png',
       desc: 'Sinfines con refuerzos o aporte para mejorar la vida útil en zonas de desgaste.',
       steps: [
         'Selección de material y definición del aporte antidesgaste.',
@@ -225,7 +171,7 @@
     },
     chasis: {
       title: 'Chasis para industria agrícola',
-      img: 'assets/img/chasis-para-industria-agricola.png',
+      img: 'assets/img/chasis-industria-agricola.png',
       desc: 'Estructuras y chasis robustos, pensados para uso intensivo y fácil mantenimiento.',
       steps: [
         'Despiece y cálculo de material.',
@@ -258,7 +204,7 @@
     },
     automotriz: {
       title: 'Piezas para la industria automotriz',
-      img: 'assets/img/piezas-automotriz.png',
+      img: 'assets/img/piezas-industria-automotriz.png',
       desc: 'Piezas mecanizadas y conjuntos para producción, prototipos o reposición.',
       steps: [
         'Validación de plano/tolerancias y material.',
@@ -481,6 +427,7 @@
 (function(){
   const hero = document.querySelector('.hero');
   if (!hero || window.matchMedia('(max-width: 980px)').matches) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
   const canvas = document.createElement('canvas');
   canvas.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:0.35;';
@@ -511,7 +458,14 @@
 
   const COLORS = ['#0F7391', '#066381', '#7ecfdf'];
 
+  let animating = true;
+  document.addEventListener('visibilitychange', () => {
+    animating = !document.hidden;
+    if (animating) draw();
+  });
+
   (function draw() {
+    if (!animating) return;
     ctx.clearRect(0, 0, W, H);
     particles.forEach(p => {
       p.x += p.vx; p.y += p.vy;

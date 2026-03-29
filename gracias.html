@@ -2,19 +2,21 @@
 <html lang="es">
 <head>
   <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' cdn.jsdelivr.net fonts.googleapis.com; style-src 'self' 'unsafe-inline' fonts.googleapis.com fonts.gstatic.com; font-src 'self' fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://whoacawjbzbyhaqopyfd.supabase.co wss://whoacawjbzbyhaqopyfd.supabase.co https://formsubmit.co; frame-src https://www.google.com; object-src 'none'"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
   <title>Consulta enviada | Metamas</title>
     <link rel="icon" type="image/png" href="assets/img/favicon.png">
   <meta name="robots" content="noindex"/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css"/>
 </head>
 <body>
+<a href="#main-content" class="skip-link">Saltar al contenido principal</a>
 <header class="topbar">
   <div class="container">
-    <div class="nav" data-nav>
+    <div class="nav">
       <a class="brand" href="index.html" aria-label="Metamas">
         <div class="brand-badge" aria-hidden="true"></div>
         <div><span>metamas</span><small>industrias metalúrgicas</small></div>
@@ -26,7 +28,7 @@
         <a href="contacto.html">Contacto</a>
       </nav>
       <div class="nav-cta">
-        <a class="btn primary" href="https://wa.me/5493413667500" target="_blank" rel="noopener">WhatsApp</a>
+        <a class="btn primary" href="https://wa.me/5493412622980" target="_blank" rel="noopener noreferrer">WhatsApp</a>
         <button class="burger" data-burger aria-label="Abrir menú" aria-expanded="false">☰</button>
       </div>
     </div>
@@ -41,7 +43,7 @@
   </div>
 </header>
 
-<main class="section">
+<main id="main-content" class="section">
   <div class="container">
     <div class="card" style="padding:28px">
       <h2>¡Listo! Recibimos tu consulta.</h2>
@@ -49,7 +51,7 @@
         Te vamos a responder lo antes posible. Si querés acelerar, mandanos el plano o fotos por WhatsApp.
       </p>
       <div class="hero-actions" style="margin-top:16px">
-        <a class="btn primary" href="https://wa.me/5493413667500" target="_blank" rel="noopener">Enviar por WhatsApp</a>
+        <a class="btn primary" href="https://wa.me/5493412622980" target="_blank" rel="noopener noreferrer">Enviar por WhatsApp</a>
         <a class="btn" href="index.html">Volver al inicio</a>
         <a class="btn ghost" href="contacto.html">Nueva consulta</a>
       </div>
@@ -61,7 +63,7 @@
   <div class="footer-social">
     <div class="container footer-social-inner">
       <div class="footer-social-title">Redes sociales</div>
-      <a class="social-ig" href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram">
+      <a class="social-ig" href="https://www.instagram.com/metamas.srl/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
           <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Z" stroke="currentColor" stroke-width="2"/>
           <path d="M12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10Z" stroke="currentColor" stroke-width="2"/>
@@ -77,7 +79,7 @@
 <div class="brand">
 <img src="assets/img/logo_new.png" class="logo-nuevo footer-logo" alt="Metamas">
 </div>
-<p class="footer-desc">Somos una empresa metalúrgica orientada a resultados: procesos claros, buena terminación y comunicación directa.</p>
+<p class="footer-desc">Somos una empresa metalúrgica orientada a resultados: procesos claros, buena terminación y comunicación directa.</p><div class="footer-iso"><a href="https://www.tuv.com/landingpage/en/tuvdotcom-cms/search-for-certificate/search-for-certificate.html?searchText=9105064554" target="_blank" rel="noopener noreferrer" title="Certificado ISO 9001:2015 — TÜV Rheinland ID 9105064554"><img src="assets/img/tuv-iso9001-1.png" alt="Certificado ISO 9001:2015 TÜV Rheinland" class="iso-badge"></a></div>
 </div>
 <div class="footer-links">
 <div class="footer-h">Secciones</div>
@@ -93,12 +95,12 @@
 <div class="footer-h">Contacto</div>
 <div class="footer-contact-list">
 <div class="fc-item">
-<span class="fc-ico"><svg aria-hidden="true" class="ico-wa" focusable="false" viewbox="0 0 24 24"><path d="M12 3C7.03 3 3 6.58 3 11c0 2.12.93 4.07 2.46 5.55L4.5 21l4.64-1.45c.9.3 1.86.46 2.86.46 4.97 0 9-3.58 9-8s-4.03-9-9-9z" fill="currentColor"></path><path d="M9.17 8.36c.15-.33.32-.34.47-.34h.4c.13 0 .31.05.47.33l.64 1.1c.15.26.13.43-.04.63l-.36.42c-.12.14-.09.26.02.44.29.5.65.96 1.07 1.38.42.41.88.77 1.38 1.06.18.11.3.14.44.02l.42-.36c.2-.17.37-.19.63-.04l1.1.64c.28.16.33.34.33.47v.4c0 .15-.01.32-.34.47-.4.18-1.3.41-2.3.2-1.2-.26-2.75-1.02-4.28-2.55C7.6 12 6.84 10.45 6.58 9.25c-.21-1 .02-1.9.2-2.3z" fill="currentColor"></path></svg></span>
-<a href="https://wa.me/5493413667500" rel="noopener noreferrer" target="_blank">+54 341 366-7500</a>
+<span class="fc-ico"><svg aria-hidden="true" class="ico-wa" focusable="false" viewBox="0 0 24 24"><path d="M12 3C7.03 3 3 6.58 3 11c0 2.12.93 4.07 2.46 5.55L4.5 21l4.64-1.45c.9.3 1.86.46 2.86.46 4.97 0 9-3.58 9-8s-4.03-9-9-9z" fill="currentColor"></path><path d="M9.17 8.36c.15-.33.32-.34.47-.34h.4c.13 0 .31.05.47.33l.64 1.1c.15.26.13.43-.04.63l-.36.42c-.12.14-.09.26.02.44.29.5.65.96 1.07 1.38.42.41.88.77 1.38 1.06.18.11.3.14.44.02l.42-.36c.2-.17.37-.19.63-.04l1.1.64c.28.16.33.34.33.47v.4c0 .15-.01.32-.34.47-.4.18-1.3.41-2.3.2-1.2-.26-2.75-1.02-4.28-2.55C7.6 12 6.84 10.45 6.58 9.25c-.21-1 .02-1.9.2-2.3z" fill="currentColor"></path></svg></span>
+<a href="https://wa.me/5493412622980" rel="noopener noreferrer" target="_blank">+54 341 262-2980</a>
 </div>
 <div class="fc-item">
 <span class="fc-ico">✉</span>
-<a href="mailto:ventas@metamas.com.ar">ventas@metamas.com.ar</a>
+<a href="mailto:metalurgicamassaccesi@yahoo.com.ar">metalurgicamassaccesi@yahoo.com.ar</a>
 </div>
 <div class="fc-item">
 <span class="fc-ico">📍</span>
@@ -118,9 +120,12 @@
 </footer>
 
 <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase-config.js"></script>
 <script src="js/main.js"></script>
+<script src="js/contact-config.js"></script>
 
-<a class="fab-wa" href="https://wa.me/5493413667500" target="_blank" rel="noopener" aria-label="WhatsApp Metamas">
+<a class="fab-wa" href="https://wa.me/5493412622980" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Metamas">
   <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
     <path fill="currentColor" d="M12 3C7.03 3 3 6.58 3 11c0 2.12.93 4.07 2.46 5.55L4.5 21l4.64-1.45c.9.3 1.86.46 2.86.46 4.97 0 9-3.58 9-8s-4.03-9-9-9z"/>
     <path fill="currentColor" d="M9.17 8.36c.15-.33.32-.34.47-.34h.4c.13 0 .31.05.47.33l.64 1.1c.15.26.13.43-.04.63l-.36.42c-.12.14-.09.26.02.44.29.5.65.96 1.07 1.38.42.41.88.77 1.38 1.06.18.11.3.14.44.02l.42-.36c.2-.17.37-.19.63-.04l1.1.64c.28.16.33.34.33.47v.4c0 .15-.01.32-.34.47-.4.18-1.3.41-2.3.2-1.2-.26-2.75-1.02-4.28-2.55C7.6 12 6.84 10.45 6.58 9.25c-.21-1 .02-1.9.2-2.3z"/>

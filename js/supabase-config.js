@@ -1,8 +1,10 @@
 /* ============================================================
    SUPABASE CONFIG — METAMAS
-   
-   ⚠️  COMPLETÁ CON TUS DATOS DE SUPABASE
-   Seguí las instrucciones en SETUP.md
+   NOTA DE SEGURIDAD: El anon key de Supabase es público por diseño.
+   La seguridad real depende de las Row Level Security (RLS) policies
+   configuradas en el dashboard de Supabase. Verificar que:
+   - Tabla site_data: solo lectura para anon, escritura solo autenticado
+   - Tabla productos: solo lectura para anon, escritura solo autenticado
    ============================================================ */
 
 const SUPABASE_URL  = 'https://whoacawjbzbyhaqopyfd.supabase.co';
@@ -38,7 +40,7 @@ window.MetamasDB = (function () {
         .eq('key', key)
         .maybeSingle();
       if (error) return null;
-      return data.value;
+      return data ? data.value : null;
     },
     async setData(key, value) {
       const { error } = await sb

@@ -3,9 +3,16 @@
    Funciona en Productos y Catálogo
    ============================================================ */
 (function(){
-  const WA_NUMBER = '5493413667500';
+  let WA_NUMBER = '5493412622980';
+  // Exponer para que contact-config.js pueda actualizarlo en tiempo real
+  window.MetamasCarritoWA = { get number(){ return WA_NUMBER; }, set number(v){ WA_NUMBER = v; } };
   const STORAGE_KEY = 'metamas_carrito';
 
+
+  /* ---- Sanitizador HTML (previene XSS) ---- */
+  function escHtml(s){
+    return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;').replace(/`/g,'&#96;');
+  }
   /* ---- Estado ---- */
   let cart = loadCart();
 
@@ -106,12 +113,12 @@
     container.innerHTML = cart.map((item,idx) => `
       <div class="carrito-item" data-idx="${idx}">
         <div class="carrito-item-img">
-          ${item.img ? `<img src="${item.img}" alt="${item.name}" loading="lazy">` : ''}
+          ${item.img ? `<img src="${escHtml(item.img)}" alt="${escHtml(item.name)}" loading="lazy">` : ''}
         </div>
         <div class="carrito-item-info">
-          <div class="carrito-item-name">${item.name}</div>
+          <div class="carrito-item-name">${escHtml(item.name)}</div>
           <div class="carrito-item-price">${formatPrice(item.price * item.qty)}</div>
-          <div class="carrito-item-section">${item.section}</div>
+          <div class="carrito-item-section">${escHtml(item.section)}</div>
           <div class="carrito-item-ctrl">
             <button class="qty-minus" data-idx="${idx}">−</button>
             <span class="qty">${item.qty}</span>
@@ -172,14 +179,24 @@
   }
 
   window.metamasCheckout = function(){
-    if(cart.length === 0){ alert('Tu carrito está vacío'); return; }
+    if(cart.length === 0){ showToast('Agregá productos antes de cotizar'); return; }
     const msg = buildWAMessage();
     const url = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
-    window.open(url, '_blank');
+    window.open(url, '_blank', 'noopener,noreferrer');
   };
 
   window.metamasLimpiarCarrito = function(){
-    if(confirm('¿Vaciar el carrito?')){ cart=[]; saveCart(); updateBadge(); renderCarrito(); }
+    /* Inline confirm: mark button, second click confirms */
+    const clearBtn = document.getElementById('carrito-clear');
+    if(clearBtn && clearBtn.dataset.confirming === 'yes'){
+      clearBtn.dataset.confirming = '';
+      clearBtn.textContent = 'Vaciar carrito';
+      cart=[]; saveCart(); updateBadge(); renderCarrito();
+    } else if(clearBtn){
+      clearBtn.dataset.confirming = 'yes';
+      clearBtn.textContent = '¿Confirmás? Tocá de nuevo';
+      setTimeout(()=>{ clearBtn.dataset.confirming=''; clearBtn.textContent='Vaciar carrito'; }, 3000);
+    }
   };
 
   /* ---- Init al cargar el DOM ---- */
